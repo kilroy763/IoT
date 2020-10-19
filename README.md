@@ -146,6 +146,8 @@ We moeten 2 applets maken. 1 voor licht uit en 1 voor licht aan.  Druk op de gro
 
 Nu kan je door middel van de google assistent het lampje op je NodeMCU aan of uitzetten!
 
+https://www.youtube.com/watch?v=kdOrk1ZNdyk&ab_channel=MaxKiljan
+
 ### Bronnen
 
 [https://learn.adafruit.com/pyportal-voice-controlled-smart-switch-and-time-display/google-assistant-setup](https://learn.adafruit.com/pyportal-voice-controlled-smart-switch-and-time-display/google-assistant-setup)
