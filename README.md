@@ -12,8 +12,7 @@ Arduino 2
 
 NodeMCU Board
 
-![dfasdasd](https://user-images.githubusercontent.com/58260542/96464031-a408d980-1227-11eb-9bfb-6897b5689d87.jpg)
-
+![dfasdasd](https://user-images.githubusercontent.com/58260542/96464031-a408d980-1227-11eb-9bfb-6897b5689d87.jpg | width=10)
 
 
 # Stap 1 De code
