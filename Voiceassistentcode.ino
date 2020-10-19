@@ -21,15 +21,15 @@
 
 /************************* WiFi *********************************/
 
-#define WLAN_SSID       "Max"
-#define WLAN_PASS       "janeejanee"
+#define WLAN_SSID       "SSID"
+#define WLAN_PASS       "WACHTWOORD"
 
 /************************* Adafruit.io Setup *********************************/
 
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883                   // use 8883 for SSL
-#define AIO_USERNAME    "Kilroy763"
-#define AIO_KEY         "aio_tWtY544LX4RzWFR0udql2UhrZ4yQ"
+#define AIO_USERNAME    "GEBRUIKERSNAAM"
+#define AIO_KEY         "ADAFRUIT CODE"
 
 /************************* Global state *********************************/
 WiFiClient client;
@@ -113,7 +113,7 @@ void MQTT_connect() {
        Serial.println(mqtt.connectErrorString(ret));
        Serial.println("Retrying MQTT connection in 5 seconds...");
        mqtt.disconnect();
-       delay(500);  // wait 5 seconds
+       delay(500);  // 5 seconden delay
        retries--;
        if (retries == 0) {
          
