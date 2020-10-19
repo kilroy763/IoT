@@ -146,6 +146,7 @@ We moeten 2 applets maken. 1 voor licht uit en 1 voor licht aan.  Druk op de gro
 
 Nu kan je door middel van de google assistent het lampje op je NodeMCU aan of uitzetten!
 
+DEMO VIDEO:
 https://www.youtube.com/watch?v=kdOrk1ZNdyk&ab_channel=MaxKiljan
 
 ### Bronnen
