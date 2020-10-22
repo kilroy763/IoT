@@ -19,17 +19,19 @@
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
 
+#include <Adafruit_NeoPixel.h>
+
 /************************* WiFi *********************************/
 
 #define WLAN_SSID       "SSID"
-#define WLAN_PASS       "WACHTWOORD"
+#define WLAN_PASS       "PASSWORD"
 
 /************************* Adafruit.io Setup *********************************/
 
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883                   // use 8883 for SSL
-#define AIO_USERNAME    "GEBRUIKERSNAAM"
-#define AIO_KEY         "ADAFRUIT CODE"
+#define AIO_USERNAME    "USERNAME"
+#define AIO_KEY         "KEY"
 
 /************************* Global state *********************************/
 WiFiClient client;
@@ -42,6 +44,15 @@ Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO
 Adafruit_MQTT_Subscribe onoffbutton = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/onoff");
 
 /*************************** Code ************************************/
+
+void MQTT_connect();
+
+#define PIN        D5  //aan welke pin de ledstrip aangesloten zit
+
+#define NUMPIXELS 30 // Lengte pixels
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
 
 void setup() {
   Serial.begin(115200);
@@ -65,8 +76,9 @@ void setup() {
   Serial.println("IP address: "); Serial.println(WiFi.localIP());
 
   //Lampjes verbinden
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, HIGH);
+
+
+ pixels.begin(); 
 
   // onoff feed toevoegen
   mqtt.subscribe(&onoffbutton);
@@ -75,11 +87,13 @@ void setup() {
 uint32_t x=0;
 
 void loop() {
-
+  
+ pixels.clear();
+ 
   MQTT_connect();
   // loop van 2.5 seconden die kijkt of de toggle is veranderd
   Adafruit_MQTT_Subscribe *subscription;
-  while ((subscription = mqtt.readSubscription(2500))) {
+  while ((subscription = mqtt.readSubscription(500))) {
     if (subscription == &onoffbutton) {
       Serial.print(F("Got: "));
       Serial.println((char *)onoffbutton.lastread);
@@ -89,11 +103,17 @@ void loop() {
   // als de toggle op aan staat dan lamp aan, anders uit
      if (!strcmp((char*) onoffbutton.lastread, "ON"))
       {
-        digitalWrite(LED_BUILTIN, LOW);
+ for(int i=0; i<NUMPIXELS; i++) { // For each pixel...
+    pixels.setPixelColor(i, pixels.Color(0, 255, 0));
+    pixels.show();   
+      }
       }
       else
       {
-        digitalWrite(LED_BUILTIN, HIGH);
+  for(int i=0; i<NUMPIXELS; i++) {
+    pixels.setPixelColor(i, pixels.Color(255, 0, 0));
+    pixels.show();  
+      }
       }
 }
 
@@ -113,7 +133,7 @@ void MQTT_connect() {
        Serial.println(mqtt.connectErrorString(ret));
        Serial.println("Retrying MQTT connection in 5 seconds...");
        mqtt.disconnect();
-       delay(500);  // 5 seconden delay
+       delay(5000);  // 5 seconden delay
        retries--;
        if (retries == 0) {
          
