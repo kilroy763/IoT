@@ -172,7 +172,7 @@ Ik had een probleem met de code doordat ik geen loop gebruikte. Ik probeer door 
 
 ![Untitled 2](https://user-images.githubusercontent.com/58260542/96991393-a66d7b00-1528-11eb-9a94-b6b8f5320d72.png)
 
-Ik probeerde in eerste instantie simpel de ledstrip aan te krijgen door aan te geven: "als de knop aan is zet dan het licht op groen, zo niet op rood" dit werkte alleen niet om deze manier. Na de foutcode te hebben opgezocht kwam ik erachter dat ik een loop moest gebruiken en hierdoor werkte het wel. 
+Ik probeerde in eerste instantie simpel de ledstrip aan te krijgen door aan te geven: "als de knop aan is zet dan het licht op groen, zo niet op rood" dit werkte alleen niet om deze manier. Na de foutcode te hebben opgezocht kwam ik erachter dat ik een loop moest gebruiken en hierdoor werkte het wel. Dat vondt ik op de volgende link https://github.com/adafruit/Adafruit_NeoPixel/issues/171.
 Door de volgende code was het opgelost:
 
 ```arduino
